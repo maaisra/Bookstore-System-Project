@@ -21,6 +21,11 @@ public class Gui extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
+        JFrame f = new JFrame("Checker");
+        JPanel cp = new JPanel();
+        Container main = f.getContentPane();
+        ImageIcon img = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        f.setIconImage(img.getImage());
 
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
