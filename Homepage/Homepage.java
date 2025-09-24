@@ -28,7 +28,10 @@ public class Homepage extends JFrame {
     private int totalPages;
 
     public Homepage() {
+        
         setTitle("Homepage");
+        ImageIcon img = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
         setSize(1000, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,11 +42,9 @@ public class Homepage extends JFrame {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel titleLabel = new JLabel("Hayha Book Store");
         titleLabel.setFont(new Font("TH Niramit AS", Font.BOLD, 36));
-        JComboBox<String> comboBox = new JComboBox<String>(new String[]{"Item 1", "Item 2", "Item 3", "Item 4"});
-        JTextField searchField = new JTextField("Search", 20);
+        JTextField searchField = new JTextField(" ", 20);
         searchField.setFont(new Font("TH Niramit AS", Font.PLAIN, 18));
         topPanel.add(titleLabel);
-        topPanel.add(comboBox);
         topPanel.add(searchField);
 
         // Products panel
@@ -69,6 +70,28 @@ public class Homepage extends JFrame {
             navPanel.add(pageButtons[i]);
         }
 
+        
+        ImageIcon img1 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        book1.setIconImage(img.getImage());
+        ImageIcon img2 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        ImageIcon img3 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        ImageIcon img4 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        ImageIcon img5 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        ImageIcon img6 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        ImageIcon img7 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        ImageIcon img8 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        ImageIcon img9 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        ImageIcon img10 = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        setIconImage(img.getImage());
+        "book"+(i+1)
         navPanel.add(nextBtn);
 
         returnBtn.addActionListener(new ActionListener() {
