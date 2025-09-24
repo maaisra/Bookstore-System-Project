@@ -3,10 +3,9 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 
-public class Gui {
+public class Gui extends JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Gui.class.getName());
-    JFrame f = new JFrame("Homepage");
     /**
      * Creates new form Gui
      */
@@ -196,9 +195,9 @@ public class Gui {
         );
 
         jLabel16.setFont(new java.awt.Font("TH Niramit AS", 0, 18)); // NOI18N
-        jLabel16.setText("เมืองคนบาป : Lapvona ");
+        //jLabel16.setText("เมืองคนบาป : Lapvona ");
 
-        jLabel17.setText("284.05 Baht");
+        //jLabel17.setText("284.05 Baht");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
