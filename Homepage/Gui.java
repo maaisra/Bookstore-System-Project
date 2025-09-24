@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Gui extends JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Gui.class.getName());
     /**
      * Creates new form Gui
@@ -13,7 +13,11 @@ public class Gui extends JFrame {
         initComponents();
     }                        
     private void initComponents() {
-
+        JFrame f = new JFrame("Checker");
+        JPanel cp = new JPanel();
+        Container main = f.getContentPane();
+        ImageIcon img = new ImageIcon("C:/Users/Lenovo/Pictures/Saved Pictures/home.jpg");
+        f.setIconImage(img.getImage());
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
