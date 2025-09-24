@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,7 +19,7 @@ public class User {
         JLabel o = new JLabel("Password : ");
         o.setBounds(30, 40, 70, 20);
         cp.add(o);
-        JTextField t2 = new JTextField(20);
+        JPasswordField t2 = new JPasswordField(20);
         t2.setBounds(100, 40, 150, 20);
         cp.add(t2);
         JButton b1 = new JButton("Login");
