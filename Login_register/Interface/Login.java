@@ -230,16 +230,8 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-       
-    }                                  
-
-    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-     
-    }                                  
-
-    private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-         if(evt.getSource() == b1){                                 
+    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {
+        if(evt.getSource() == b1){                                 
         String user = t1.getText();
             char[] password1 = t2.getPassword();
            // char[] password2 = pass2.getPassword();
@@ -265,17 +257,22 @@ public class Login extends javax.swing.JFrame {
             if(speical==false){
             showMessage("You can't use speical symbol in username.");
             }
-            if(!Arrays.equals(password1, password2)) {
-                passchk=false;
-              showMessage("Password don't macth.");
-            }
+            
             else if(speical == true && userNpass == true && passchk == true){
             showMessage("Login successful!");
             //java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true)); 
             dispose();
+            java.awt.EventQueue.invokeLater(() -> new App().setVisible(true));
             }
         }      
-    }    
+    }                                   
+
+    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+     
+    }                                  
+
+    private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+    }
     
     private void showMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
