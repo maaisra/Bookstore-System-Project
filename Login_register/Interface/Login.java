@@ -4,6 +4,8 @@ package Interface;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.util.Arrays;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -223,77 +225,25 @@ public class Login extends javax.swing.JFrame {
             .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>                        
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-        if(evt.getSource() == b1){                                 
-        String user = t1.getText();
-            String pass = t2.getText();
-            Boolean speical = true;
-            Boolean userNpass = true;
-            Boolean passchk = true;
-            for(Character ch : user.toCharArray()){
-                if(!Character.isAlphabetic(ch)){
-                    speical = false;
-                }
-            }
-
-            if (user.isEmpty() || pass.isEmpty()) {
-            userNpass = false;
-            showMessage("Get Username and Password Please.");
-            }
-
-            if(pass.length() < 8) {
-                passchk = false;
-                showMessage("Password not correct.");
-            }
-
-            if(speical==false){
-            showMessage("You can't use speical symbol in username.");
-            }
-            else if(speical == true && userNpass == true && passchk == true)
-            showMessage("Login successful!");
-            
-        }
+       
     }                                  
 
     private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-       if(evt.getSource() == b1){                                 
-        String user = t1.getText();
-            String pass = t2.getText();
-            Boolean speical = true;
-            Boolean userNpass = true;
-            Boolean passchk = true;
-            for(Character ch : user.toCharArray()){
-                if(!Character.isAlphabetic(ch)){
-                    speical = false;
-                }
-            }
-
-            if (user.isEmpty() || pass.isEmpty()) {
-            userNpass = false;
-            showMessage("Get Username and Password Please.");
-            }
-
-            if(pass.length() < 8) {
-                passchk = false;
-                showMessage("Password not correct.");
-            }
-
-            if(speical==false){
-            showMessage("You can't use speical symbol in username.");
-            }
-            else if(speical == true && userNpass == true && passchk == true)
-            showMessage("Login successful!");
-            
-        }
+     
     }                                  
 
     private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-        if(evt.getSource() == b1){                                 
+         if(evt.getSource() == b1){                                 
         String user = t1.getText();
-            String pass = t2.getText();
+            char[] password1 = t2.getPassword();
+           // char[] password2 = pass2.getPassword();
+            char[] password2 = {'s'};
             Boolean speical = true;
             Boolean userNpass = true;
             Boolean passchk = true;
@@ -303,23 +253,28 @@ public class Login extends javax.swing.JFrame {
                 }
             }
 
-            if (user.isEmpty() || pass.isEmpty()) {
+            if (user.isEmpty() || password1.length < 1) {
             userNpass = false;
             showMessage("Get Username and Password Please.");
             }
 
-            if(pass.length() < 8) {
+            if(password1.length < 7) {
                 passchk = false;
                 showMessage("Password not correct.");
             }
-
             if(speical==false){
             showMessage("You can't use speical symbol in username.");
             }
-            else if(speical == true && userNpass == true && passchk == true)
+            if(!Arrays.equals(password1, password2)) {
+                passchk=false;
+              showMessage("Password don't macth.");
+            }
+            else if(speical == true && userNpass == true && passchk == true){
             showMessage("Login successful!");
-            
-        }
+            //java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true)); 
+            dispose();
+            }
+        }      
     }    
     
     private void showMessage(String msg) {
@@ -327,7 +282,7 @@ public class Login extends javax.swing.JFrame {
     }              
 
     private void regActionPerformed(java.awt.event.ActionEvent evt) {                                    
-        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(false));
+        dispose();
         java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));  
     }                                   
 
