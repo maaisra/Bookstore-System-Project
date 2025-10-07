@@ -1,9 +1,19 @@
 package Interface;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
-import javax.swing.*;
+
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -296,7 +306,7 @@ public class Register extends javax.swing.JFrame {
              */
             if (userExist == true && speical == true && userNpass == true && passchk == true) {
                 boolean found = false; 
-                try (BufferedReader br = new BufferedReader(new FileReader("Interface/userInfo.txt"))) {
+                try (BufferedReader br = new BufferedReader(new FileReader("Interface/userInfo.csv"))) {
                     String line;
                     while ((line = br.readLine()) != null) {
                         if (line.contains(user)) {
@@ -316,7 +326,7 @@ public class Register extends javax.swing.JFrame {
              * If all condition are true write to csv file
              */
             if(speical == true && userNpass == true && passchk == true && userExist == true){
-                 try (BufferedWriter bw = new BufferedWriter(new FileWriter("Interface/userInfo.txt", true))) {
+                 try (BufferedWriter bw = new BufferedWriter(new FileWriter("Interface/userInfo.csv", true))) {
                     bw.newLine();
                     bw.write(user + "," + new String(password1)); 
                 } catch (Exception x) {
