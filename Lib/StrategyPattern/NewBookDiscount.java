@@ -1,4 +1,4 @@
-package pricing;
+package Lib.StrategyPattern;
 
 public class NewBookDiscount implements DiscountStrategy {
     @Override
