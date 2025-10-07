@@ -1,9 +1,18 @@
 package Interface;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Arrays;
+import java.util.Scanner;
 
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -253,6 +262,7 @@ public class Register extends javax.swing.JFrame {
         String user = t3.getText();
             char[] password1 = pass1.getPassword();
             char[] password2 = pass2.getPassword();
+            Boolean userExist = true;
             Boolean speical = true;
             Boolean userNpass = true;
             Boolean passchk = true;
@@ -269,17 +279,41 @@ public class Register extends javax.swing.JFrame {
 
             if(password1.length < 7) {
                 passchk = false;
-                showMessage("Password not correct.");
+                showMessage("Password too short.");
             }
             if(speical==false){
             showMessage("You can't use speical symbol in username.");
             }
             if(!Arrays.equals(password1, password2)) {
                 passchk=false;
-              showMessage("Password don't macth.");
+              showMessage("Password don't match.");
             }
-            else if(speical == true && userNpass == true && passchk == true){
-            showMessage("Login successful!");
+            if(userExist==true && speical==true && userNpass==true && passchk==true){
+                try (BufferedReader br = new BufferedReader(new FileReader("/userInfo.csv"))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        if (line.contains(user)) {
+                            System.out.println(line);
+                        }else{
+                            userExist = false;
+                            showMessage("This username is already taken.");
+                            break;
+                        }
+                    }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+            }
+            else if(speical == true && userNpass == true && passchk == true && userExist == true){
+                 try (BufferedWriter bw = new BufferedWriter(new FileWriter("Lib/gui/Login_register/Interface/userInfo.csv", true))) {
+                    bw.write(user + "," + new String(password1)); 
+                    bw.newLine();
+                } catch (Exception x) {
+                    System.out.println(x);
+                }
+
+            showMessage("Register successful!");
             java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true)); 
             dispose();
             }
