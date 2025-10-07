@@ -1,5 +1,5 @@
-package Lib.ShipmentFactory;
+package pricing;
 
 public interface Shipment {
-    
+    String ship();
 }
