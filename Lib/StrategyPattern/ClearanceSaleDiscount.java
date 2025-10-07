@@ -1,5 +1,5 @@
 package Lib.StrategyPattern;
-import Lib.DataModels.*;
+import Lib.DataModels.Order;
 
 public class ClearanceSaleDiscount implements DiscountStrategy {
     @Override
