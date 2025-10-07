@@ -1,4 +1,4 @@
-package Lib.StrategyPattern;
+package Lib.ShipmentFactory;
 
 public class StandardShipment implements Shipment {
     @Override

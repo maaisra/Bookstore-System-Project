@@ -1,4 +1,4 @@
-package Lib.StrategyPattern;
+package Lib.ShipmentFactory;
 
 public class ExpressShipment implements Shipment {
     @Override

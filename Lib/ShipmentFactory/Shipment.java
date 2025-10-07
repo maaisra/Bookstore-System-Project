@@ -1,5 +1,6 @@
-package Lib.StrategyPattern;
+package Lib.ShipmentFactory;
 
 public interface Shipment {
-    String ship();
+    String getInfo();
+    double getCost();
 }
