@@ -266,49 +266,69 @@ public class Register extends javax.swing.JFrame {
             Boolean speical = true;
             Boolean userNpass = true;
             Boolean passchk = true;
+            /*
+             * Check special character in username
+             */
             for(Character ch : user.toCharArray()){
                 if(!Character.isAlphabetic(ch)){
                     speical = false;
                 }
             }
-
+            /*
+             * Check empty username or password
+             */
             if (user.isEmpty() || password1.length < 1) {
             userNpass = false;
             showMessage("Get Username and Password Please.");
             }
-
+            /*
+             * Check password length
+             */
             if(password1.length < 7) {
                 passchk = false;
                 showMessage("Password too short.");
             }
+            /*
+             * Check special character in username
+             */
             if(speical==false){
             showMessage("You can't use speical symbol in username.");
             }
+            /*
+             * Check password match
+             */
             if(!Arrays.equals(password1, password2)) {
                 passchk=false;
               showMessage("Password don't match.");
             }
-            if(userExist==true && speical==true && userNpass==true && passchk==true){
-                try (BufferedReader br = new BufferedReader(new FileReader("/userInfo.csv"))) {
+            /*
+             * Check user exist in csv file
+             */
+            if (userExist == true && speical == true && userNpass == true && passchk == true) {
+                boolean found = false; 
+                try (BufferedReader br = new BufferedReader(new FileReader("userInfo.csv"))) {
                     String line;
                     while ((line = br.readLine()) != null) {
                         if (line.contains(user)) {
-                            System.out.println(line);
-                        }else{
-                            userExist = false;
-                            showMessage("This username is already taken.");
-                            break;
+                            found = true;
                         }
                     }
-            } catch (Exception e) {
-                System.out.println(e);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                
+                if (found) {
+                    userExist = false;
+                    showMessage("This username is already taken.");
+                } 
             }
-
-            }
-            else if(speical == true && userNpass == true && passchk == true && userExist == true){
-                 try (BufferedWriter bw = new BufferedWriter(new FileWriter("Lib/gui/Login_register/Interface/userInfo.csv", true))) {
-                    bw.write(user + "," + new String(password1)); 
+            /*
+             * If all condition are true write to csv file
+             */
+            if(speical == true && userNpass == true && passchk == true && userExist == true){
+                 try (BufferedWriter bw = new BufferedWriter(new FileWriter("userInfo.csv", true))) {
                     bw.newLine();
+                    bw.write(user + "," + new String(password1)); 
                 } catch (Exception x) {
                     System.out.println(x);
                 }
