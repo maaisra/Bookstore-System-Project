@@ -1,5 +1,7 @@
 package Lib.StrategyPattern;
 
+import Lib.DataModels.*;
+
 public class NewBookDiscount implements DiscountStrategy {
     @Override
     public double applyDiscount(Order order) {
