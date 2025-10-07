@@ -61,7 +61,11 @@ public class Customer {
     }
     
     public double getTotalPrice(){
-        return 0;
+        double sum = 0;
+        for (Order order : orders) {
+            sum += pricingService.calculateBookPrice(order);
+        }
+        return sum;
     }
     
     public int getBookCount(){
