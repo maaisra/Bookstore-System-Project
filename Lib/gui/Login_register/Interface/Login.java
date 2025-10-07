@@ -4,8 +4,9 @@ package Interface;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -230,42 +231,82 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {
+   private void b1ActionPerformed(java.awt.event.ActionEvent evt) {
         if(evt.getSource() == b1){                                 
-        String user = t1.getText();
+            String user = t1.getText();
             char[] password1 = t2.getPassword();
-           // char[] password2 = pass2.getPassword();
-            char[] password2 = {'s'};
+            Boolean passCorrect = false;   
+            Boolean userExist = false;  
             Boolean speical = true;
             Boolean userNpass = true;
             Boolean passchk = true;
+            /*
+            * Check password match
+            */
             for(Character ch : user.toCharArray()){
                 if(!Character.isAlphabetic(ch)){
                     speical = false;
                 }
             }
-
+            /* 
+            * Check user and pass not empty
+            */
             if (user.isEmpty() || password1.length < 1) {
-            userNpass = false;
-            showMessage("Get Username and Password Please.");
+                userNpass = false;
+                showMessage("Get Username and Password Please.");
             }
-
+            /* 
+            * Check password length
+            */
             if(password1.length < 7) {
                 passchk = false;
                 showMessage("Password not correct.");
             }
+            /*
+            * Check special symbol in username
+            */
             if(speical==false){
-            showMessage("You can't use speical symbol in username.");
+                showMessage("You can't use speical symbol in username.");
             }
-            
-            else if(speical == true && userNpass == true && passchk == true){
-            showMessage("Login successful!");
-            //java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true)); 
-            dispose();
-            java.awt.EventQueue.invokeLater(() -> new App().setVisible(true));
+            /*
+            * Check user/pass exist in csv file
+            */
+            if (speical == true && userNpass == true && passchk == true) {
+                try (BufferedReader br = new BufferedReader(new FileReader("Interface/userInfo.csv"))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        if (line.trim().isEmpty()) continue;
+
+                        String[] parts = line.split(",");
+                        if (parts.length < 2) continue; 
+
+                        // Collect username and password from csv
+                        String storedUser = parts[0].trim();
+                        String storedPass = parts[1].trim();
+
+                        if (storedUser.equals(user) && storedPass.equals(new String(password1))) {
+                            userExist = true;
+                            passCorrect = true;
+                            break;
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+            /*
+            * If all condition are true write to csv file
+            */
+            if(speical == true && userNpass == true && passchk == true && userExist == true && passCorrect == true){
+                showMessage("Login successful!");
+                dispose();
+                java.awt.EventQueue.invokeLater(() -> new App().setVisible(true));
+            } else if (speical == true && userNpass == true && passchk == true && !passCorrect) {
+                showMessage("User/Password is wrong or not exist.");
             }
         }      
-    }                                   
+    }
+                                
 
     private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
      
