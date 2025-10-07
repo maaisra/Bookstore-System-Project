@@ -4,10 +4,9 @@ package Interface;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Arrays;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -41,6 +40,7 @@ public class Login extends javax.swing.JFrame {
         pass = new javax.swing.JLabel();
         t2 = new javax.swing.JPasswordField();
         reg = new javax.swing.JButton();
+        label_login = new javax.swing.JLabel();
         top = new javax.swing.JLabel();
         b1 = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
@@ -88,6 +88,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        label_login.setFont(new java.awt.Font("TH Niramit AS", 0, 24)); // NOI18N
+        label_login.setText("ลงชื่อเข้าใช้");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -102,15 +105,20 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(reg)
                         .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_login)
+                .addGap(133, 133, 133))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(label_login)
                 .addGap(18, 18, 18)
                 .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,7 +239,7 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-   private void b1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
         if(evt.getSource() == b1){                                 
             String user = t1.getText();
             char[] password1 = t2.getPassword();
@@ -305,23 +313,23 @@ public class Login extends javax.swing.JFrame {
                 showMessage("User/Password is wrong or not exist.");
             }
         }      
-    }
-                                
-
-    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-     
     }                                  
 
-    private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-    }
-    
     private void showMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
     }              
 
+    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        
+    }                                  
+
+    private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        
+    }                                  
+
     private void regActionPerformed(java.awt.event.ActionEvent evt) {                                    
         dispose();
-        java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));  
+        java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true)); 
     }                                   
 
     /**
@@ -358,6 +366,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel label_login;
     private javax.swing.JLabel pass;
     private javax.swing.JButton reg;
     private javax.swing.JTextField t1;
