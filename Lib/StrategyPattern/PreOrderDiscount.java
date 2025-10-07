@@ -1,4 +1,4 @@
-package pricing;
+package Lib.StrategyPattern;
 
 public class PreOrderDiscount implements DiscountStrategy {
     @Override
