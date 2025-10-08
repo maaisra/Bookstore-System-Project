@@ -146,7 +146,7 @@ public class Register extends javax.swing.JFrame {
         kGradientPanel1.setkEndColor(new java.awt.Color(153, 102, 255));
         kGradientPanel1.setkStartColor(new java.awt.Color(102, 0, 204));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/Photo/book1.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/images/book1.png"))); // NOI18N
         jLabel3.setText("jLabel3");
 
         jLabel2.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
@@ -385,3 +385,4 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel topre;
     // End of variables declaration                   
 }
+
