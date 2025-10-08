@@ -185,7 +185,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("พร้อมรับข่าวสาร และโปรโมชั่นพิเศษสำหรับสมาชิกเท่านั้น");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/Photo/book1.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/images/book1.png"))); // NOI18N
         jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
@@ -375,3 +375,4 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel user;
     // End of variables declaration                   
 }
+
