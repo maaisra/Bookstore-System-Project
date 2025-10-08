@@ -1,5 +1,7 @@
 package Lib.OrderProcessor;
 
+import Lib.DataModels.*;
+
 public class Order {
 
     //Rep

@@ -1,14 +1,13 @@
 package Lib.ShipmentDecorator;
 
 import Lib.ShipmentFactory.*;
-import Lib.DataModels.*;
-import Lib.User.*;
+import Lib.OrderProcessor.*;
 
 public class InsuranceDecorator extends ShipmentDecorator{
 
-    private final Customer order;
+    private final Cart order;
 
-    public InsuranceDecorator(Shipment wrappedShipment, Customer order) {
+    public InsuranceDecorator(Shipment wrappedShipment, Cart order) {
         super(wrappedShipment);
         this.order = order;
     }
@@ -20,7 +19,7 @@ public class InsuranceDecorator extends ShipmentDecorator{
 
     @Override
     public double getCost() {
-        return super.getCost() + (order.getTotalPrice() * 0.15);
+        return super.getCost() + ( order.getTotalPrice() * 0.15);
     }
     
 }
