@@ -1,15 +1,16 @@
 package Interface;
-
-import java.io.*;
-import java.util.Arrays;
-import java.util.Scanner;
-import javax.swing.*;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-//import javax.swing.JOptionPane;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.Arrays;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,6 +52,7 @@ public class Register extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         topre = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -149,7 +151,7 @@ public class Register extends javax.swing.JFrame {
         kGradientPanel1.setkEndColor(new java.awt.Color(153, 102, 255));
         kGradientPanel1.setkStartColor(new java.awt.Color(102, 0, 204));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/Photo/book.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/image/book.png"))); // NOI18N
         jLabel3.setText("jLabel3");
 
         jLabel2.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
@@ -200,6 +202,9 @@ public class Register extends javax.swing.JFrame {
         topre.setFont(new java.awt.Font("TH Niramit AS", 1, 48)); // NOI18N
         topre.setText("หนังสือเฮฮา");
 
+        jLabel5.setFont(new java.awt.Font("TH Niramit AS", 0, 24)); // NOI18N
+        jLabel5.setText("สมัครสมาชิก");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -215,21 +220,28 @@ public class Register extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)))
                         .addGap(107, 107, 107))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(topre)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addComponent(topre))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(153, 153, 153)
+                                .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(45, 45, 45)
                 .addComponent(topre)
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
             .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -240,14 +252,14 @@ public class Register extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void t3ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-      
+        // TODO add your handling code here:
     }                                  
 
     private void pass1ActionPerformed(java.awt.event.ActionEvent evt) {                                      
-    
-    }                              
+        // TODO add your handling code here:
+    }                                     
 
-    private void b2ActionPerformed(java.awt.event.ActionEvent evt) { 
+    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
         if(evt.getSource() == b2){                                 
         String user = t3.getText();
             char[] password1 = pass1.getPassword();
@@ -333,7 +345,6 @@ public class Register extends javax.swing.JFrame {
     private void showMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
     }                              
-
     /**
      * @param args the command line arguments
      */
@@ -356,7 +367,7 @@ public class Register extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));    
+        java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));
     }
 
     // Variables declaration - do not modify                     
@@ -366,6 +377,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
