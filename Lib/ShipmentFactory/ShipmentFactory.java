@@ -1,6 +1,4 @@
-package Lib.StrategyPattern;
-
-import Lib.ShipmentFactory.Shipment;
+package Lib.ShipmentFactory;
 
 public abstract class ShipmentFactory {
     public abstract Shipment createShipment(); 

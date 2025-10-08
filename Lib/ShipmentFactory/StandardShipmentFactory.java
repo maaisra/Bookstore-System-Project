@@ -1,7 +1,4 @@
-package Lib.StrategyPattern;
-
-import Lib.ShipmentFactory.Shipment;
-import Lib.ShipmentFactory.StandardShipment;
+package Lib.ShipmentFactory;
 
 public class StandardShipmentFactory extends ShipmentFactory {
     @Override

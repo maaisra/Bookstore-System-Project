@@ -1,7 +1,6 @@
 package Lib.ShipmentDecorator;
 
-import Lib.DataModels.*;
-import Lib.ShipmentFactory.Shipment;
+import Lib.*;
 
 public class InsuranceDecorator extends ShipmentDecorator{
 
