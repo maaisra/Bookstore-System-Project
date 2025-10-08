@@ -3,7 +3,8 @@ package Lib.StrategyPattern;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import Lib.DataModels.Order;
+
+import Lib.*;
 
 public class PricingService {
     // Rep

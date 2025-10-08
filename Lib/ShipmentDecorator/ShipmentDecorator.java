@@ -1,6 +1,6 @@
 package Lib.ShipmentDecorator;
 
-import Lib.ShipmentFactory.Shipment;
+import Lib.*;
 
 public abstract class ShipmentDecorator implements Shipment{
     protected Shipment wrappedShipment;
