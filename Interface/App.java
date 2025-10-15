@@ -4,9 +4,9 @@
  */
 package Interface;
 
+import java.awt.*;
+import java.io.*;
 import javax.swing.*;
-import Lib.*;
-import Lib.OrderProcessor.ProductLoader;
 
 /**
  *
@@ -21,7 +21,8 @@ public class App extends javax.swing.JFrame {
      */
     public App() {
         initComponents();
-        new ProductLoader(jPanel4, jScrollPane2);
+        loadProducts("lib/OrderProcessor/products.csv");
+
     }
 
     /**
@@ -69,7 +70,7 @@ public class App extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setUndecorated(true);
         setResizable(false);
-
+        
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -129,6 +130,11 @@ public class App extends javax.swing.JFrame {
 
         deliveryType.add(jRadioButton1);
         jRadioButton1.setText("Express Delivery");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         deliveryType.add(jRadioButton2);
         jRadioButton2.setText("Standard Delivery");
@@ -247,17 +253,7 @@ public class App extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 189, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-        );
-
+        jPanel8.setLayout(new java.awt.GridLayout(20, 0, 2, 10));
         jScrollPane3.setViewportView(jPanel8);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -392,7 +388,7 @@ public class App extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -412,28 +408,86 @@ public class App extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {     
-        //if(cost > 0){                                     
-       showMessage("Your request has been received.");
-        //}
+       private void loadProducts(String csvFile) {
+        jPanel4.setLayout(new GridLayout(0, 2, 20, 20));
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            br.readLine(); // skip header
+
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                String name = parts[0];
+                String author = parts[1];
+                String price = parts[2];
+                String imagePath = parts[3];
+
+                JPanel productPanel = createProductPanel(name, author, price, imagePath);
+                jPanel4.add(productPanel);
+            }
+
+            jPanel4.revalidate();
+            jPanel4.repaint();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private JPanel createProductPanel(String name, String author, String price, String imagePath) {
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(400, 250));
+        panel.setBackground(new Color(204, 204, 204));
+        panel.setBorder(BorderFactory.createEtchedBorder());
+        panel.setLayout(null);
+
+        ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
+        Image scaled = icon.getImage().getScaledInstance(190, 230, Image.SCALE_SMOOTH);
+        JLabel pic = new JLabel(new ImageIcon(scaled));
+        pic.setBounds(10, 10, 190, 230);
+
+        JLabel lblName = new JLabel("Name: " + name);
+        lblName.setBounds(205, 10, 180, 25);
+
+        JLabel lblAuthor = new JLabel("Author: " + author);
+        lblAuthor.setBounds(205, 40, 180, 25);
+
+        JLabel lblPrice = new JLabel("Price: " + price);
+        lblPrice.setBounds(205, 70, 180, 25);
+
+        JButton btnAdd = new JButton("ADD TO CART");
+        btnAdd.setBounds(205, 200, 210, 30);
+
+        btnAdd.addActionListener(e -> {
+            JLabel cartLabel = new JLabel(name + " " + price);
+            jPanel8.add(cartLabel);
+            jPanel8.revalidate();
+            jPanel8.repaint();
+        });
+
+        panel.add(pic);
+        panel.add(lblName);
+        panel.add(lblAuthor);
+        panel.add(lblPrice);
+        panel.add(btnAdd);
+
+        return panel;
+    }
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
     }                                         
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {                                         
             dispose();
     }                                        
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        if(evt.getSource() == jRadioButton1){
-            
-        }
-    }
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
     }                                             
 
-    private void showMessage(String msg) {
-    JOptionPane.showMessageDialog(this, msg);
-    }
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }                                             
 
     /**
      * @param args the command line arguments
@@ -494,27 +548,3 @@ public class App extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel2;
     // End of variables declaration                   
 }
-
-/*private void jAction(){
-    try (BufferedReader br = new BufferedReader(new FileReader("Interface/buyinghistory.csv"))) {
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        if (line.trim().isEmpty()) continue;
-
-                        String[] parts = line.split(",");
-                        if (parts.length < 2) continue; 
-
-                        // history Bookname and Price from csv
-                        String storedBookname = parts[0].trim();
-                        String storedPrice = parts[1].trim();
-
-                        if (storedBookname.equals(getName()) && storedPrice.equals(getCost()) {
-                            userExist = true;
-                            passCorrect = true;
-                            break;
-                        }
-                    }
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-}*/
