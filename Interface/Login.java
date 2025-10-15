@@ -4,11 +4,8 @@ package Interface;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-import javax.swing.JOptionPane;
-
+import java.io.*;
+import javax.swing.*;
 /**
  *
  * @author Lenovo
@@ -62,7 +59,7 @@ public class Login extends javax.swing.JFrame {
 
         user.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
         user.setForeground(new java.awt.Color(51, 51, 51));
-        user.setText("ชื่อผู้ใช้");
+        user.setText("Username :");
 
         t1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +68,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         pass.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
-        pass.setText("รหัสผ่าน");
+        pass.setText("Password :");
 
         t2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +78,7 @@ public class Login extends javax.swing.JFrame {
 
         reg.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
         reg.setForeground(new java.awt.Color(51, 51, 51));
-        reg.setText("สมัครสมาชิก");
+        reg.setText("Register");
         reg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         reg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +87,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         label_login.setFont(new java.awt.Font("TH Niramit AS", 0, 24)); // NOI18N
-        label_login.setText("ลงชื่อเข้าใช้");
+        label_login.setText("Login");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -109,7 +106,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(label_login)
-                .addGap(133, 133, 133))
+                .addGap(153, 153, 153))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,10 +125,11 @@ public class Login extends javax.swing.JFrame {
         );
 
         top.setFont(new java.awt.Font("TH Niramit AS", 1, 48)); // NOI18N
-        top.setText("หนังสือเฮฮา");
+        top.setText("Hayha Book Store");
+        top.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         b1.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
-        b1.setText("เข้าสู่ระบบ");
+        b1.setText("Login");
         b1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         b1.setHideActionText(true);
         b1.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +153,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(49, 49, 49)
                 .addComponent(top)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -179,14 +177,14 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("TH Niramit AS", 1, 30)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("สมัครสมาชิกเพื่อเข้าใช้งานระบบซื้อหนังสือร้านเฮฮา");
+        jLabel4.setText("Register for login Hayha Book Store");
 
         jLabel2.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("พร้อมรับข่าวสาร และโปรโมชั่นพิเศษสำหรับสมาชิกเท่านั้น");
+        jLabel2.setText("Get ready to receive news and special promotions for members only.");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/image/book.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/images/book.png"))); // NOI18N
         jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
@@ -196,22 +194,23 @@ public class Login extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel4))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)))
+                .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(102, 102, 102))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
@@ -320,11 +319,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-        
+       
     }                                  
 
     private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-       
+        
     }                                  
 
     private void regActionPerformed(java.awt.event.ActionEvent evt) {                                    
