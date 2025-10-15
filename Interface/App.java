@@ -470,7 +470,7 @@ public class App extends javax.swing.JFrame {
         }
 
         // delivery type
-        double shippingCost = 0;
+        double deliveryFee = 0;
         ShipmentFactory factory = new ShipmentFactory();
         Shipment shipment = null;
 
@@ -482,13 +482,13 @@ public class App extends javax.swing.JFrame {
 
         if (shipment != null) {
             if (giftWrap.isSelected()) shipment = new GiftWrapDecorator(shipment);
-            if (insurance.isSelected()) shipment = new InsuranceDecorator(shipment, null);
-            shippingCost = shipment.getCost();
+            if (insurance.isSelected()) shipment = new InsuranceDecorator(shipment);
+            deliveryFee = shipment.getCost();
         }
 
-        double total = cartTotal + shippingCost;
+        double total = cartTotal + deliveryFee;
         cost.setText(String.format("%.2f", cartTotal));
-        delivery.setText(String.format("%.2f", shippingCost));
+        delivery.setText(String.format("%.2f", deliveryFee));
         totalcost.setText(String.format("%.2f", total));
     }
 
@@ -561,69 +561,69 @@ public class App extends javax.swing.JFrame {
     }
 
 
-    private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // เช็คก่อนว่ามีสินค้าในตะกร้าหรือไม่
-        if (CartList.getComponentCount() == 0) {
-            showMessage("Please add items to the cart before payment.");
-            return;
-        }
+   private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    // --- 1. Check cart is not empty ---
+    if (CartList.getComponentCount() == 0) {
+        showMessage("Please add items to the cart before payment.");
+        return;
+    }
 
-        // 1. สร้าง shipment factory
-        ShipmentFactory shipmentFactory = new ShipmentFactory();
-        Shipment shipment = null;
-
-        // 2. เช็คประเภทขนส่ง
-        if (expressDelivery.isSelected()) {
-            shipment = shipmentFactory.creatShipment("EXPRESS");
-        } else if (standardDelivery.isSelected()) {
-            shipment = shipmentFactory.creatShipment("STANDARD");
-        } else {
-            showMessage("Please select a delivery method.");
-            return;
-        }
-
-        // 3. เช็ค decorator: gift wrap และ insurance
-        if (giftWrap.isSelected()) {
-            shipment = new GiftWrapDecorator(shipment);
-        }
-
-        if (insurance.isSelected()) {
-            // หากคุณต้องการข้อมูลจาก cart เพิ่มเติมใน InsuranceDecorator ให้ใส่ตรงนี้
-            shipment = new InsuranceDecorator(shipment, null); // ตัวอย่าง: คุณอาจส่ง Cart หรือรายการสินค้า
-        }
-
-        // 4. คำนวณค่าจัดส่ง
-        double shippingCost = shipment.getCost();  // สมมุติว่า getCost() return double
-
-        // 5. คำนวณราคารวมของสินค้าในตะกร้า
-        double cartTotal = 0;
-        for (Component comp : CartList.getComponents()) {
-            if (comp instanceof JLabel label) {
-                String text = label.getText(); // เช่น "BookName 250"
-                String[] parts = text.split(" ");
-                if (parts.length >= 2) {
-                    try {
-                        double price = Double.parseDouble(parts[parts.length - 1]);
-                        cartTotal += price;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid price format: " + parts[parts.length - 1]);
-                    }
+    // --- 2. Calculate total price from cart items ---
+    double cartTotal = 0;
+    for (Component comp : CartList.getComponents()) {
+        if (comp instanceof JLabel label) {
+            String[] parts = label.getText().split(" ");
+            if (parts.length >= 2) {
+                try {
+                    double price = Double.parseDouble(parts[parts.length - 1]);
+                    cartTotal += price;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid price: " + parts[parts.length - 1]);
                 }
             }
         }
-
-        // 6. คำนวณราคารวมสุทธิ
-        double total = cartTotal + shippingCost;
-
-        // 7. แสดงผลลัพธ์ใน Label ต่างๆ
-        cost.setText(String.format("%.2f", cartTotal));     // ราคารวมสินค้า
-        shipmentCost.setText(String.format("%.2f", shippingCost)); // ค่าจัดส่ง
-        totalcost.setText(String.format("%.2f", total));      // รวมทั้งหมด
-
-        // 8. แสดงข้อความสำเร็จ
-        showMessage("Pay successful!");
-        showMessage("Purchase recorded to history.");
     }
+
+    // --- 3. Create delivery type (base shipment) ---
+    ShipmentFactory shipmentFactory = new ShipmentFactory();
+    Shipment baseShipment = null;
+
+    if (expressDelivery.isSelected()) {
+        baseShipment = shipmentFactory.creatShipment("EXPRESS");
+    } else if (standardDelivery.isSelected()) {
+        baseShipment = shipmentFactory.creatShipment("STANDARD");
+    } else {
+        showMessage("Please select a delivery method.");
+        return;
+    }
+
+    // --- 4. Apply decorators on top of the base shipment ---
+    Shipment finalShipment = baseShipment;
+
+    if (giftWrap.isSelected()) {
+        finalShipment = new GiftWrapDecorator(finalShipment);
+    }
+
+    if (insurance.isSelected()) {
+        finalShipment = new InsuranceDecorator(finalShipment);
+    }
+
+    // --- 5. Calculate costs separately ---
+    double deliveryFee = baseShipment.getCost();   // pure delivery cost
+    double addonFee = finalShipment.getCost() - baseShipment.getCost(); // only decorators
+    double total = cartTotal + finalShipment.getCost();
+
+    // --- 6. Display results ---
+    cost.setText(String.format("%.2f", cartTotal));        // product total
+    shipmentCost.setText(String.format("%.2f", addonFee)); // add-ons
+    delivery.setText(String.format("%.2f", deliveryFee));  // delivery
+    totalcost.setText(String.format("%.2f", total));       // grand total
+
+    // --- 7. Success message ---
+    showMessage("Pay successful!");
+    showMessage("Purchase recorded to history.");
+}
+
 
     private void showMessage(String msg) {
     JOptionPane.showMessageDialog(this, msg);
@@ -637,7 +637,7 @@ public class App extends javax.swing.JFrame {
        if (evt.getSource() == "Gift Wrap") {
             Shipment giftwrapped = new GiftWrapDecorator(null);
         } else if(evt.getSource() == "Insurance") {
-            Shipment Insurance = new InsuranceDecorator(null,null); // ต้อง setup สร้างคลาส Cart สำหรับเก็บข้อมูลหนังสือ
+            Shipment Insurance = new InsuranceDecorator(null); // ต้อง setup สร้างคลาส Cart สำหรับเก็บข้อมูลหนังสือ
         }
     }              
 
