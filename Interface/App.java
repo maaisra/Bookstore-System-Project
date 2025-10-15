@@ -520,13 +520,69 @@ public class App extends javax.swing.JFrame {
 
 
     private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        /*if(CartList == null){
-            showMessage("Please buy product before payment.");
-        }else{*/
-        showMessage("Pay successful!");
-        showMessage("Purchase recorded to history.");
-        //}
-    }     
+    // เช็คก่อนว่ามีสินค้าในตะกร้าหรือไม่
+    if (CartList.getComponentCount() == 0) {
+        showMessage("Please add items to the cart before payment.");
+        return;
+    }
+
+    // 1. สร้าง shipment factory
+    ShipmentFactory shipmentFactory = new ShipmentFactory();
+    Shipment shipment = null;
+
+    // 2. เช็คประเภทขนส่ง
+    if (expressDelivery.isSelected()) {
+        shipment = shipmentFactory.creatShipment("EXPRESS");
+    } else if (standardDelivery.isSelected()) {
+        shipment = shipmentFactory.creatShipment("STANDARD");
+    } else {
+        showMessage("Please select a delivery method.");
+        return;
+    }
+
+    // 3. เช็ค decorator: gift wrap และ insurance
+    if (giftWrap.isSelected()) {
+        shipment = new GiftWrapDecorator(shipment);
+    }
+
+    if (insurance.isSelected()) {
+        // หากคุณต้องการข้อมูลจาก cart เพิ่มเติมใน InsuranceDecorator ให้ใส่ตรงนี้
+        shipment = new InsuranceDecorator(shipment, null); // ตัวอย่าง: คุณอาจส่ง Cart หรือรายการสินค้า
+    }
+
+    // 4. คำนวณค่าจัดส่ง
+    double shippingCost = shipment.getCost();  // สมมุติว่า getCost() return double
+
+    // 5. คำนวณราคารวมของสินค้าในตะกร้า
+    double cartTotal = 0;
+    for (Component comp : CartList.getComponents()) {
+        if (comp instanceof JLabel label) {
+            String text = label.getText(); // เช่น "BookName 250"
+            String[] parts = text.split(" ");
+            if (parts.length >= 2) {
+                try {
+                    double price = Double.parseDouble(parts[parts.length - 1]);
+                    cartTotal += price;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid price format: " + parts[parts.length - 1]);
+                }
+            }
+        }
+    }
+
+    // 6. คำนวณราคารวมสุทธิ
+    double total = cartTotal + shippingCost;
+
+    // 7. แสดงผลลัพธ์ใน Label ต่างๆ
+    cost1.setText(String.format("%.2f", cartTotal));     // ราคารวมสินค้า
+    delivery.setText(String.format("%.2f", shippingCost)); // ค่าจัดส่ง
+    totalcost.setText(String.format("%.2f", total));      // รวมทั้งหมด
+
+    // 8. แสดงข้อความสำเร็จ
+    showMessage("Pay successful!");
+    showMessage("Purchase recorded to history.");
+}
+
     private void showMessage(String msg) {
     JOptionPane.showMessageDialog(this, msg);
     }                                 
@@ -535,6 +591,8 @@ public class App extends javax.swing.JFrame {
             dispose();
     }        
     
+
+
     private void giftWrapActionPerformed(java.awt.event.ActionEvent evt) {                                         
        if (evt.getSource() == "Gift Wrap") {
             Shipment giftwrapped = new GiftWrapDecorator(null);
@@ -569,7 +627,7 @@ public class App extends javax.swing.JFrame {
                     for(int i=0;i<parts.length-1;i++){
                          bw.write(parts[i]+" ");
                     }
-                    //bw.write("," + price);
+                    bw.write("," + price);
                     bw.newLine();
                 }
             }
