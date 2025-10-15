@@ -4,6 +4,8 @@
  */
 package Interface;
 
+import javax.swing.*;
+import Lib.*;
 import Lib.OrderProcessor.ProductLoader;
 
 /**
@@ -410,17 +412,28 @@ public class App extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {     
+        //if(cost > 0){                                     
+       showMessage("Your request has been received.");
+        //}
     }                                         
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {                                         
             dispose();
     }                                        
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        if(evt.getSource() == jRadioButton1){
+            
+        }
+    }
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
     }                                             
+
+    private void showMessage(String msg) {
+    JOptionPane.showMessageDialog(this, msg);
+    }
 
     /**
      * @param args the command line arguments
@@ -481,3 +494,27 @@ public class App extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel2;
     // End of variables declaration                   
 }
+
+/*private void jAction(){
+    try (BufferedReader br = new BufferedReader(new FileReader("Interface/buyinghistory.csv"))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        if (line.trim().isEmpty()) continue;
+
+                        String[] parts = line.split(",");
+                        if (parts.length < 2) continue; 
+
+                        // history Bookname and Price from csv
+                        String storedBookname = parts[0].trim();
+                        String storedPrice = parts[1].trim();
+
+                        if (storedBookname.equals(getName()) && storedPrice.equals(getCost()) {
+                            userExist = true;
+                            passCorrect = true;
+                            break;
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+}*/
