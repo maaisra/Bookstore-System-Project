@@ -37,7 +37,7 @@ public class App extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initComponents() {
+   private void initComponents() {
 
         deliveryType = new javax.swing.ButtonGroup();
         decorator = new javax.swing.ButtonGroup();
@@ -62,9 +62,9 @@ public class App extends javax.swing.JFrame {
         insurance = new javax.swing.JCheckBox();
         giftWrap = new javax.swing.JCheckBox();
         totalcost = new javax.swing.JLabel();
-        discount = new javax.swing.JLabel();
+        cost = new javax.swing.JLabel();
+        shipmentCost = new javax.swing.JLabel();
         delivery = new javax.swing.JLabel();
-        cost1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         CartList = new javax.swing.JPanel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
@@ -99,7 +99,11 @@ public class App extends javax.swing.JFrame {
                 payBtnActionPerformed(evt);
             }
         });
-
+        purchaseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseBtnActionPerformed(evt);
+            }
+        });
         jLabel14.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel14.setText("Total Cost");
@@ -114,7 +118,7 @@ public class App extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel18.setText("Discount");
+        jLabel18.setText("Shipment");
 
         jLabel19.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -145,16 +149,7 @@ public class App extends javax.swing.JFrame {
                 expressDeliveryActionPerformed(evt);
             }
         });
-         giftWrap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                giftWrapActionPerformed(evt);
-            }
-        });
-        purchaseBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                purchaseBtnActionPerformed(evt);
-            }
-        });
+
         deliveryType.add(standardDelivery);
         standardDelivery.setText("Standard Delivery");
 
@@ -202,17 +197,17 @@ public class App extends javax.swing.JFrame {
         totalcost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         totalcost.setText("0");
 
-        discount.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
-        discount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        discount.setText("0");
+        cost.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
+        cost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cost.setText("0");
+
+        shipmentCost.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
+        shipmentCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        shipmentCost.setText("0");
 
         delivery.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
         delivery.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         delivery.setText("0");
-
-        cost1.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
-        cost1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cost1.setText("0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -228,18 +223,18 @@ public class App extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(discount, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cost, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel17))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(cost1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(delivery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel21))))
                     .addComponent(payBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(delivery, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(shipmentCost, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel22))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -267,17 +262,17 @@ public class App extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jLabel20)
-                    .addComponent(discount))
+                    .addComponent(cost))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel22)
-                    .addComponent(delivery))
+                    .addComponent(shipmentCost))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jLabel21)
-                    .addComponent(cost1))
+                    .addComponent(delivery))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -451,8 +446,53 @@ public class App extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold> 
-    
+    }// </editor-fold>                        
+
+    private void updateTotals() {
+        /*
+         * Calculate cart total automatically
+         */
+        double cartTotal = 0;
+
+        for (Component comp : CartList.getComponents()) {
+            if (comp instanceof JLabel label) {
+                String text = label.getText(); // e.g. "BookName 250"
+                String[] parts = text.split(" ");
+                if (parts.length >= 2) {
+                    try {
+                        double price = Double.parseDouble(parts[parts.length - 1]);
+                        cartTotal += price;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid price format: " + parts[parts.length - 1]);
+                    }
+                }
+            }
+        }
+
+        // delivery type
+        double shippingCost = 0;
+        ShipmentFactory factory = new ShipmentFactory();
+        Shipment shipment = null;
+
+        if (expressDelivery.isSelected()) {
+            shipment = factory.creatShipment("EXPRESS");
+        } else if (standardDelivery.isSelected()) {
+            shipment = factory.creatShipment("STANDARD");
+        }
+
+        if (shipment != null) {
+            if (giftWrap.isSelected()) shipment = new GiftWrapDecorator(shipment);
+            if (insurance.isSelected()) shipment = new InsuranceDecorator(shipment, null);
+            shippingCost = shipment.getCost();
+        }
+
+        double total = cartTotal + shippingCost;
+        cost.setText(String.format("%.2f", cartTotal));
+        delivery.setText(String.format("%.2f", shippingCost));
+        totalcost.setText(String.format("%.2f", total));
+    }
+
+
     private void loadProducts(String csvFile) {
         bookList.setLayout(new GridLayout(0, 2, 20, 20));
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -507,7 +547,9 @@ public class App extends javax.swing.JFrame {
             CartList.add(cartLabel);
             CartList.revalidate();
             CartList.repaint();
+            updateTotals(); 
         });
+
 
         panel.add(pic);
         panel.add(lblName);
@@ -520,68 +562,68 @@ public class App extends javax.swing.JFrame {
 
 
     private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {                                       
-    // เช็คก่อนว่ามีสินค้าในตะกร้าหรือไม่
-    if (CartList.getComponentCount() == 0) {
-        showMessage("Please add items to the cart before payment.");
-        return;
-    }
+        // เช็คก่อนว่ามีสินค้าในตะกร้าหรือไม่
+        if (CartList.getComponentCount() == 0) {
+            showMessage("Please add items to the cart before payment.");
+            return;
+        }
 
-    // 1. สร้าง shipment factory
-    ShipmentFactory shipmentFactory = new ShipmentFactory();
-    Shipment shipment = null;
+        // 1. สร้าง shipment factory
+        ShipmentFactory shipmentFactory = new ShipmentFactory();
+        Shipment shipment = null;
 
-    // 2. เช็คประเภทขนส่ง
-    if (expressDelivery.isSelected()) {
-        shipment = shipmentFactory.creatShipment("EXPRESS");
-    } else if (standardDelivery.isSelected()) {
-        shipment = shipmentFactory.creatShipment("STANDARD");
-    } else {
-        showMessage("Please select a delivery method.");
-        return;
-    }
+        // 2. เช็คประเภทขนส่ง
+        if (expressDelivery.isSelected()) {
+            shipment = shipmentFactory.creatShipment("EXPRESS");
+        } else if (standardDelivery.isSelected()) {
+            shipment = shipmentFactory.creatShipment("STANDARD");
+        } else {
+            showMessage("Please select a delivery method.");
+            return;
+        }
 
-    // 3. เช็ค decorator: gift wrap และ insurance
-    if (giftWrap.isSelected()) {
-        shipment = new GiftWrapDecorator(shipment);
-    }
+        // 3. เช็ค decorator: gift wrap และ insurance
+        if (giftWrap.isSelected()) {
+            shipment = new GiftWrapDecorator(shipment);
+        }
 
-    if (insurance.isSelected()) {
-        // หากคุณต้องการข้อมูลจาก cart เพิ่มเติมใน InsuranceDecorator ให้ใส่ตรงนี้
-        shipment = new InsuranceDecorator(shipment, null); // ตัวอย่าง: คุณอาจส่ง Cart หรือรายการสินค้า
-    }
+        if (insurance.isSelected()) {
+            // หากคุณต้องการข้อมูลจาก cart เพิ่มเติมใน InsuranceDecorator ให้ใส่ตรงนี้
+            shipment = new InsuranceDecorator(shipment, null); // ตัวอย่าง: คุณอาจส่ง Cart หรือรายการสินค้า
+        }
 
-    // 4. คำนวณค่าจัดส่ง
-    double shippingCost = shipment.getCost();  // สมมุติว่า getCost() return double
+        // 4. คำนวณค่าจัดส่ง
+        double shippingCost = shipment.getCost();  // สมมุติว่า getCost() return double
 
-    // 5. คำนวณราคารวมของสินค้าในตะกร้า
-    double cartTotal = 0;
-    for (Component comp : CartList.getComponents()) {
-        if (comp instanceof JLabel label) {
-            String text = label.getText(); // เช่น "BookName 250"
-            String[] parts = text.split(" ");
-            if (parts.length >= 2) {
-                try {
-                    double price = Double.parseDouble(parts[parts.length - 1]);
-                    cartTotal += price;
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid price format: " + parts[parts.length - 1]);
+        // 5. คำนวณราคารวมของสินค้าในตะกร้า
+        double cartTotal = 0;
+        for (Component comp : CartList.getComponents()) {
+            if (comp instanceof JLabel label) {
+                String text = label.getText(); // เช่น "BookName 250"
+                String[] parts = text.split(" ");
+                if (parts.length >= 2) {
+                    try {
+                        double price = Double.parseDouble(parts[parts.length - 1]);
+                        cartTotal += price;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid price format: " + parts[parts.length - 1]);
+                    }
                 }
             }
         }
+
+        // 6. คำนวณราคารวมสุทธิ
+        double total = cartTotal + shippingCost;
+
+        // 7. แสดงผลลัพธ์ใน Label ต่างๆ
+        cost.setText(String.format("%.2f", cartTotal));     // ราคารวมสินค้า
+        shipmentCost.setText(String.format("%.2f", shippingCost)); // ค่าจัดส่ง
+        totalcost.setText(String.format("%.2f", total));      // รวมทั้งหมด
+
+        // 8. แสดงข้อความสำเร็จ
+        showMessage("Pay successful!");
+        showMessage("Purchase recorded to history.");
     }
-
-    // 6. คำนวณราคารวมสุทธิ
-    double total = cartTotal + shippingCost;
-
-    // 7. แสดงผลลัพธ์ใน Label ต่างๆ
-    cost1.setText(String.format("%.2f", cartTotal));     // ราคารวมสินค้า
-    delivery.setText(String.format("%.2f", shippingCost)); // ค่าจัดส่ง
-    totalcost.setText(String.format("%.2f", total));      // รวมทั้งหมด
-
-    // 8. แสดงข้อความสำเร็จ
-    showMessage("Pay successful!");
-    showMessage("Purchase recorded to history.");
-}
 
     private void showMessage(String msg) {
     JOptionPane.showMessageDialog(this, msg);
@@ -590,8 +632,6 @@ public class App extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {                                         
             dispose();
     }        
-    
-
 
     private void giftWrapActionPerformed(java.awt.event.ActionEvent evt) {                                         
        if (evt.getSource() == "Gift Wrap") {
@@ -666,11 +706,10 @@ public class App extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JPanel CartList;
     private javax.swing.JPanel bookList;
-    private javax.swing.JLabel cost1;
+    private javax.swing.JLabel cost;
     private javax.swing.ButtonGroup decorator;
     private javax.swing.JLabel delivery;
     private javax.swing.ButtonGroup deliveryType;
-    private javax.swing.JLabel discount;
     private javax.swing.JRadioButton expressDelivery;
     private javax.swing.JCheckBox giftWrap;
     private javax.swing.JCheckBox insurance;
@@ -698,7 +737,8 @@ public class App extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JButton payBtn;
     private javax.swing.JButton purchaseBtn;
+    private javax.swing.JLabel shipmentCost;
     private javax.swing.JRadioButton standardDelivery;
     private javax.swing.JLabel totalcost;
-    // End of variables declaration                   
+    // End of variables declaration                     
 }
