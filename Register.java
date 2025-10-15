@@ -4,13 +4,9 @@ package Interface;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.Arrays;
-
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -63,7 +59,7 @@ public class Register extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         reuser.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
-        reuser.setText("ชื่อผู้ใช้");
+        reuser.setText("Username :");
 
         t3.setFont(new java.awt.Font("TH Niramit AS", 0, 14)); // NOI18N
         t3.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +69,7 @@ public class Register extends javax.swing.JFrame {
         });
 
         repass.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
-        repass.setText("รหัสผ่าน");
+        repass.setText("Password :");
 
         pass1.setFont(new java.awt.Font("TH Niramit AS", 0, 14)); // NOI18N
         pass1.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +79,7 @@ public class Register extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
-        jLabel1.setText("ยืนยันรหัสผ่าน");
+        jLabel1.setText("Confirm password :");
 
         pass2.setFont(new java.awt.Font("TH Niramit AS", 0, 14)); // NOI18N
 
@@ -123,7 +119,7 @@ public class Register extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         b2.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
-        b2.setText("สมัครสมาชิก");
+        b2.setText("Register");
         b2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         b2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,32 +147,32 @@ public class Register extends javax.swing.JFrame {
         kGradientPanel1.setkEndColor(new java.awt.Color(153, 102, 255));
         kGradientPanel1.setkStartColor(new java.awt.Color(102, 0, 204));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/image/book.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lib/images/book.png"))); // NOI18N
         jLabel3.setText("jLabel3");
 
         jLabel2.setFont(new java.awt.Font("TH Niramit AS", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("พร้อมรับข่าวสาร และโปรโมชั่นพิเศษสำหรับสมาชิกเท่านั้น");
+        jLabel2.setText("Get ready to receive news and special promotions for members only.");
 
         jLabel4.setFont(new java.awt.Font("TH Niramit AS", 1, 30)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("สมัครสมาชิกเพื่อเข้าใช้งานระบบซื้อหนังสือร้านเฮฮา");
+        jLabel4.setText("Register for login Hayha Book Store");
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(149, 149, 149))))
+                        .addGap(149, 149, 149))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(14, 14, 14))))
             .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(kGradientPanel1Layout.createSequentialGroup()
                     .addGap(8, 8, 8)
@@ -200,10 +196,10 @@ public class Register extends javax.swing.JFrame {
 
         topre.setBackground(new java.awt.Color(0, 0, 0));
         topre.setFont(new java.awt.Font("TH Niramit AS", 1, 48)); // NOI18N
-        topre.setText("หนังสือเฮฮา");
+        topre.setText("Hayha Book Store");
 
         jLabel5.setFont(new java.awt.Font("TH Niramit AS", 0, 24)); // NOI18N
-        jLabel5.setText("สมัครสมาชิก");
+        jLabel5.setText("Register");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -222,10 +218,10 @@ public class Register extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(112, 112, 112)
+                                .addGap(73, 73, 73)
                                 .addComponent(topre))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(153, 153, 153)
+                                .addGap(173, 173, 173)
                                 .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -233,9 +229,9 @@ public class Register extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
                 .addComponent(topre)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -345,6 +341,7 @@ public class Register extends javax.swing.JFrame {
     private void showMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
     }                              
+
     /**
      * @param args the command line arguments
      */
