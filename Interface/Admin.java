@@ -386,7 +386,7 @@ public class Admin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
        if(jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() || jTextField4.getText().isEmpty()){
-            //showMessage
+            showMessage("Please input all information.");
        }else{
             String name = jTextField2.getText();
             String author = jTextField3.getText();
@@ -410,10 +410,13 @@ public class Admin extends javax.swing.JFrame {
                 } catch (IOException e) {
                     System.err.println(e);
                 }
+                showMessage("Added product.");
             }
             
         }
-     
+    private void showMessage(String msg) {
+    JOptionPane.showMessageDialog(this, msg);
+    }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
          JFileChooser fileChooser = new JFileChooser();

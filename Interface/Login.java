@@ -241,6 +241,7 @@ public class Login extends javax.swing.JFrame {
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
         if(evt.getSource() == b1){                                 
             String user = t1.getText();
+            String admin = "admin";
             char[] password1 = t2.getPassword();
             Boolean passCorrect = false;   
             Boolean userExist = false;  
@@ -305,9 +306,15 @@ public class Login extends javax.swing.JFrame {
             * If all condition are true write to csv file
             */
             if(speical == true && userNpass == true && passchk == true && userExist == true && passCorrect == true){
-                showMessage("Login successful!");
-                dispose();
-                java.awt.EventQueue.invokeLater(() -> new App().setVisible(true));
+                if(user.equals(admin)){
+                     showMessage("Welcome Admin!");
+                    dispose();
+                    java.awt.EventQueue.invokeLater(() -> new Admin().setVisible(true));
+                }else{
+                     showMessage("Login successful!");
+                    dispose();
+                    java.awt.EventQueue.invokeLater(() -> new App().setVisible(true));          
+            }
             } else if (speical == true && userNpass == true && passchk == true && !passCorrect) {
                 showMessage("User/Password is wrong or not exist.");
             }

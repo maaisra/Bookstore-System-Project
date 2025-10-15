@@ -4,6 +4,11 @@
  */
 package Interface;
 
+/**
+ *
+ * @author Lueng
+ */
+
 import java.awt.*;
 import java.io.*;
 import javax.swing.*;
@@ -13,18 +18,14 @@ import Lib.OrderProcessor.Cart;
 import Lib.ShipmentDecorator.*;
 import Lib.ShipmentFactory.*;
 
-/**
- *
- * @author Lueng
- */
-public class App extends javax.swing.JFrame {
+public class Test extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(App.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Test.class.getName());
 
     /**
      * Creates new form App
      */
-    public App() {
+    public Test() {
         initComponents();
         loadProducts("lib/OrderProcessor/products.csv");
     }
@@ -58,8 +59,8 @@ public class App extends javax.swing.JFrame {
         expressDelivery = new javax.swing.JRadioButton();
         standardDelivery = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
-        giftWrap = new javax.swing.JRadioButton();
-        insurance = new javax.swing.JRadioButton();
+        insurance = new javax.swing.JCheckBox();
+        giftWrap = new javax.swing.JCheckBox();
         totalcost = new javax.swing.JLabel();
         discount = new javax.swing.JLabel();
         delivery = new javax.swing.JLabel();
@@ -90,11 +91,7 @@ public class App extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        purchaseBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                purchaseBtnActionPerformed(evt);
-            }
-        });
+
         payBtn.setFont(new java.awt.Font("TH Niramit AS", 1, 18)); // NOI18N
         payBtn.setText("PAY");
         payBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -148,12 +145,16 @@ public class App extends javax.swing.JFrame {
                 expressDeliveryActionPerformed(evt);
             }
         });
-         expressDelivery.addActionListener(new java.awt.event.ActionListener() {
+         giftWrap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                expressDeliveryActionPerformed(evt);
+                giftWrapActionPerformed(evt);
             }
         });
-
+        purchaseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseBtnActionPerformed(evt);
+            }
+        });
         deliveryType.add(standardDelivery);
         standardDelivery.setText("Standard Delivery");
 
@@ -174,29 +175,26 @@ public class App extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        decorator.add(giftWrap);
-        giftWrap.setText("Gift Wrap");
-        giftWrap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                giftWrapActionPerformed(evt);
-            }
-        });
-
-        decorator.add(insurance);
         insurance.setText("Insurance");
+
+        giftWrap.setText("Gift Wrap");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(insurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(giftWrap, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(giftWrap)
+                    .addComponent(insurance))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addComponent(giftWrap)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(insurance))
         );
 
@@ -453,9 +451,9 @@ public class App extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>                        
-
-   private void loadProducts(String csvFile) {
+    }// </editor-fold> 
+    
+    private void loadProducts(String csvFile) {
         bookList.setLayout(new GridLayout(0, 2, 20, 20));
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             String line;
@@ -520,27 +518,32 @@ public class App extends javax.swing.JFrame {
         return panel;
     }
 
+
     private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        /*if(CartList == null){
+            showMessage("Please buy product before payment.");
+        }else{*/
         showMessage("Pay successful!");
         showMessage("Purchase recorded to history.");
-    }                                     
+        //}
+    }     
     private void showMessage(String msg) {
     JOptionPane.showMessageDialog(this, msg);
-    }
+    }                                 
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {                                         
             dispose();
-    }                                        
-
+    }        
+    
     private void giftWrapActionPerformed(java.awt.event.ActionEvent evt) {                                         
        if (evt.getSource() == "Gift Wrap") {
             Shipment giftwrapped = new GiftWrapDecorator(null);
         } else if(evt.getSource() == "Insurance") {
             Shipment Insurance = new InsuranceDecorator(null,null); // ต้อง setup สร้างคลาส Cart สำหรับเก็บข้อมูลหนังสือ
         }
-    }                                        
+    }              
 
-    private void expressDeliveryActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    private void expressDeliveryActionPerformed(java.awt.event.ActionEvent evt) {                                                                                               
         ShipmentFactory shipmentFactory = new ShipmentFactory();
         if (evt.getSource() == "Standard Delivery") {
             Shipment StandardShipment = shipmentFactory.creatShipment("STANDARD");
@@ -549,8 +552,8 @@ public class App extends javax.swing.JFrame {
             Shipment ExpressShipment = shipmentFactory.creatShipment("EXPRESS");
             //ExpressShipment.getCost();
         }
-    }                                               
-
+    }     
+    
     private void purchaseBtnActionPerformed(java.awt.event.ActionEvent evt) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("Lib/User/history.csv", true))) {
         for (Component comp : CartList.getComponents()) {
@@ -566,7 +569,7 @@ public class App extends javax.swing.JFrame {
                     for(int i=0;i<parts.length-1;i++){
                          bw.write(parts[i]+" ");
                     }
-                    bw.write("," + price);
+                    //bw.write("," + price);
                     bw.newLine();
                 }
             }
@@ -576,6 +579,7 @@ public class App extends javax.swing.JFrame {
     }
     new Userhistory().setVisible(true);
 }
+
     /**
      * @param args the command line arguments
      */
@@ -598,7 +602,7 @@ public class App extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new App().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Test().setVisible(true));
     }
 
     // Variables declaration - do not modify                     
@@ -610,8 +614,8 @@ public class App extends javax.swing.JFrame {
     private javax.swing.ButtonGroup deliveryType;
     private javax.swing.JLabel discount;
     private javax.swing.JRadioButton expressDelivery;
-    private javax.swing.JRadioButton giftWrap;
-    private javax.swing.JRadioButton insurance;
+    private javax.swing.JCheckBox giftWrap;
+    private javax.swing.JCheckBox insurance;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
