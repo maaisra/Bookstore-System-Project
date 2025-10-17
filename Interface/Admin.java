@@ -171,7 +171,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("HAYHA BOOK STORE");
+        jLabel13.setText("");
 
         jTextField1.setText("Search");
 
@@ -196,7 +196,7 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE) //553
                         .addGap(143, 143, 143))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -411,6 +411,7 @@ public class Admin extends javax.swing.JFrame {
                     System.err.println(e);
                 }
                 showMessage("Added product.");
+                refreshProducts();
             }
             
         }

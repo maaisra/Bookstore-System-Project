@@ -10,6 +10,8 @@ package Interface;
  */
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import javax.swing.*;
 
@@ -69,7 +71,7 @@ public class App extends javax.swing.JFrame {
         CartList = new javax.swing.JPanel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        //jTextField1 = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         purchaseBtn = new javax.swing.JButton();
         kGradientPanel2 = new keeptoo.KGradientPanel();
@@ -324,8 +326,8 @@ public class App extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("HAYHA BOOK STORE");
 
-        jTextField1.setText("Search");
-
+        //jTextField1.setText("Search");
+        
         jButton9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("X");
@@ -353,7 +355,7 @@ public class App extends javax.swing.JFrame {
                         .addComponent(jButton9))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        //.addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
                         .addComponent(purchaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -369,7 +371,7 @@ public class App extends javax.swing.JFrame {
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    //.addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(purchaseBtn)))))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -548,6 +550,25 @@ public class App extends javax.swing.JFrame {
             CartList.revalidate();
             CartList.repaint();
             updateTotals(); 
+            cartLabel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e){
+                    Container parent = cartLabel.getParent();
+                    parent.remove(cartLabel);
+                    parent.revalidate();
+                    parent.repaint();
+                    updateTotals(); 
+                }
+                @Override
+                public void mouseEntered(MouseEvent e){
+                    cartLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                  cartLabel.setForeground(Color.RED);
+                }
+                @Override
+                public void mouseExited(MouseEvent e){
+                  cartLabel.setForeground(Color.BLACK);
+                }
+            });
         });
 
 
@@ -732,7 +753,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
+    //private javax.swing.JTextField jTextField1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JButton payBtn;
